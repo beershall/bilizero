@@ -1,0 +1,22 @@
+type LoginRequest {
+	UserName string `json:"user_name"`
+	Password string `json:"password"`
+}
+
+type UserInfoResponse {
+	UserName string `json:"user_name"`
+	Addr     string `json:"addr"`
+	Id       uint   `json:"id"`
+}
+
+@server (
+	prefix: /api/users
+)
+service users {
+	@handler login
+	post /api/users/login (LoginRequest) returns (string)
+
+	@handler userInfo
+	get /api/users/info returns (UserInfoResponse)
+}
+
